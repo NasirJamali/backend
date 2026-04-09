@@ -151,10 +151,15 @@ app.post('/clone', async (req, res) => {
   try {
     console.log(`[${jobId}] Starting pure static clone of ${url}`);
     
-    const browser = await chromium.launch({ 
-      headless: true,
-      args: ['--disable-blink-features=AutomationControlled']
-    });
+   const browser = await chromium.launch({
+  headless: true,
+  args: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-blink-features=AutomationControlled'
+  ]
+});
     
     const context = await browser.newContext({
       viewport: { width: 1280, height: 800 },
