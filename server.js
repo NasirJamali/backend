@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const CLONE_DIR = path.join(__dirname, 'clones');
 
 if (!fs.existsSync(CLONE_DIR)) {
